@@ -13,16 +13,17 @@ import {
   LogOut,
   User
 } from 'lucide-react';
-import { View } from '../types';
+import { View, Student } from '../types';
 
 interface StudentSidebarProps {
   currentView: View;
   onViewChange: (view: View) => void;
   isOpen?: boolean;
   onClose?: () => void;
+  student: Student;
 }
 
-export const StudentSidebar: React.FC<StudentSidebarProps> = ({ currentView, onViewChange, isOpen, onClose }) => {
+export const StudentSidebar: React.FC<StudentSidebarProps> = ({ currentView, onViewChange, isOpen, onClose, student }) => {
   const menuItems = [
     { id: View.MY_ADVENTURE, label: 'My Adventure', icon: Rocket, color: '#ec2027' },
     { id: View.MY_STARS, label: 'My Stars', icon: Star, color: '#00a651' },
@@ -52,11 +53,17 @@ export const StudentSidebar: React.FC<StudentSidebarProps> = ({ currentView, onV
           <X size={24} strokeWidth={3} />
         </button>
 
-        <div className="bg-white/10 p-6 rounded-[2.5rem] border-2 border-dashed border-[#fbee21]/30 relative group cursor-pointer overflow-hidden shrink-0 mb-6 md:mb-8 text-center transition-all hover:bg-white/15">
+        {/* Clickable Profile Card */}
+        <button 
+          onClick={() => onViewChange(View.PROFILE)}
+          className={`w-full bg-white/10 p-6 rounded-[2.5rem] border-2 border-dashed relative group cursor-pointer overflow-hidden shrink-0 mb-6 md:mb-8 text-center transition-all hover:bg-white/15 outline-none focus:ring-4 focus:ring-[#fbee21]/20 ${
+            currentView === View.PROFILE ? 'border-[#fbee21] bg-white/20' : 'border-[#fbee21]/30'
+          }`}
+        >
           <div className="relative inline-block mb-3">
              <div className="w-20 h-20 md:w-24 md:h-24 bg-[#fbee21] rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center rotate-3 shadow-xl mx-auto border-4 border-white">
                 <img 
-                  src="https://api.dicebear.com/7.x/adventurer/svg?seed=Buddy&backgroundColor=fbee21" 
+                  src={`https://api.dicebear.com/7.x/adventurer/svg?seed=${student.avatarSeed || 'Buddy'}&backgroundColor=fbee21`} 
                   className="w-16 h-16 md:w-20 md:h-20 drop-shadow-lg" 
                   alt="Student Avatar" 
                 />
@@ -65,11 +72,11 @@ export const StudentSidebar: React.FC<StudentSidebarProps> = ({ currentView, onV
                 <Sparkles size={16} strokeWidth={4} />
              </div>
           </div>
-          <h4 className="text-xl md:text-2xl font-black leading-none mt-2 text-white">Buddy Learner</h4>
+          <h4 className="text-xl md:text-2xl font-black leading-none mt-2 text-white truncate">{student.firstName} {student.lastName}</h4>
           <div className="mt-3 flex items-center justify-center gap-2">
             <span className="bg-[#fbee21] text-[#292667] px-4 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest">Super Star</span>
           </div>
-        </div>
+        </button>
 
         <nav className="space-y-2.5 md:space-y-4 flex-1 overflow-y-auto scrollbar-hide py-1">
           {menuItems.map((item) => {
@@ -107,15 +114,18 @@ export const StudentSidebar: React.FC<StudentSidebarProps> = ({ currentView, onV
       {/* Logout & Profile Footer */}
       <div className="p-5 md:p-8 shrink-0 bg-[#292667] border-t-2 border-white/10">
         <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3 bg-white/5 p-3 rounded-2xl flex-1 border border-white/10">
-            <div className="p-2 bg-[#fbee21] rounded-lg">
+          <button 
+            onClick={() => onViewChange(View.PROFILE)}
+            className="flex items-center gap-3 bg-white/5 p-3 rounded-2xl flex-1 border border-white/10 hover:bg-white/10 transition-all text-left group"
+          >
+            <div className="p-2 bg-[#fbee21] rounded-lg group-hover:rotate-12 transition-transform">
               <User size={18} className="text-[#292667]" strokeWidth={3} />
             </div>
             <div className="overflow-hidden">
-              <p className="text-[10px] font-black text-[#fbee21] uppercase tracking-widest leading-none mb-1">Username</p>
-              <p className="text-sm font-mono font-black text-white truncate">1009921</p>
+              <p className="text-[10px] font-black text-[#fbee21] uppercase tracking-widest leading-none mb-1">ID HERO</p>
+              <p className="text-sm font-mono font-black text-white truncate">{student.username}</p>
             </div>
-          </div>
+          </button>
           <button 
             className="p-4 bg-[#ec2027] text-white rounded-2xl shadow-lg hover:bg-[#991b1b] transition-all active:scale-90 border-b-4 border-black/20 group"
             title="Log Out"

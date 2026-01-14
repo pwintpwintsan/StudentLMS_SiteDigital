@@ -8,6 +8,7 @@ export enum View {
   RESOURCES = 'resources',
   TESTS = 'tests',
   OTHER_COURSES = 'other-courses',
+  PROFILE = 'profile',
   
   // Teacher Portal Views (Fixing missing properties used in Sidebar.tsx)
   MY_CLASSES = 'my-classes',

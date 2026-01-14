@@ -9,13 +9,14 @@ import { TestsView } from './components/views/TestsView';
 import { TeachingResourcesView } from './components/views/TeachingResourcesView';
 import { OtherCoursesView } from './components/views/OtherCoursesView';
 import { AttendanceView } from './components/views/AttendanceView';
+import { ProfileSettingsView } from './components/views/ProfileSettingsView';
 import { View, Student } from './types';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>(View.MY_ADVENTURE);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState<string>('Digital Kids Starter V2');
-  const [student] = useState<Student>({
+  const [student, setStudent] = useState<Student>({
     id: 's1',
     username: '1009921',
     firstName: 'Lucky',
@@ -58,6 +59,17 @@ const App: React.FC = () => {
         return <TestsView onEnterCourse={handleEnterCourse} />;
       case View.OTHER_COURSES:
         return <OtherCoursesView onEnterCourse={handleEnterCourse} />;
+      case View.PROFILE:
+        return (
+          <ProfileSettingsView 
+            student={student} 
+            onSave={(updatedStudent) => {
+              setStudent(updatedStudent);
+              setCurrentView(View.MY_ADVENTURE);
+            }}
+            onBack={() => setCurrentView(View.MY_ADVENTURE)}
+          />
+        );
       default:
         return <StudentLearningView selectedCourse={selectedCourse} />;
     }
@@ -77,6 +89,7 @@ const App: React.FC = () => {
           onViewChange={handleViewChange} 
           isOpen={isMobileMenuOpen}
           onClose={() => setIsMobileMenuOpen(false)}
+          student={student}
         />
         
         {isMobileMenuOpen && (
