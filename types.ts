@@ -20,7 +20,6 @@ export enum View {
 
 export type TaskType = 'video' | 'multiple-choice' | 'assignment-upload' | 'quick-text';
 
-// Fix: Added UserRole type for ClassDetailView and Teacher interface
 export type UserRole = 'Educator' | 'Assistant' | 'Guest Speaker' | 'Admin' | string;
 
 export interface Task {
@@ -36,7 +35,18 @@ export interface Module {
   id: number;
   title: string;
   tasks: Task[];
-  testStatus: 'completed' | 'available' | 'locked';
+  progress: number;
+  testStatus?: 'completed' | 'available' | 'locked';
+}
+
+export interface Certificate {
+  id: string;
+  courseName: string;
+  issueDate: string;
+  teacherName: string;
+  score: number;
+  isUnlocked: boolean;
+  progress: number;
 }
 
 export interface Student {
@@ -56,7 +66,6 @@ export interface Student {
   registeredClasses: Array<{ id: string, name: string }>;
 }
 
-// Fix: Added missing Teacher interface
 export interface Teacher {
   id: string;
   username: string;
@@ -68,7 +77,6 @@ export interface Teacher {
   assignedClassIds: string[];
 }
 
-// Fix: Added missing Course interface
 export interface Course {
   id: string;
   name: string;
@@ -76,7 +84,6 @@ export interface Course {
   thumbnail: string;
 }
 
-// Fix: Added missing ClassInfo interface
 export interface ClassInfo {
   id: string;
   name: string;

@@ -47,7 +47,7 @@ export const TeachingResourcesView: React.FC<TeachingResourcesViewProps> = ({ on
       </div>
 
       <div className="flex flex-col md:flex-row gap-4 flex-shrink-0">
-        <div className="flex-1 bg-white p-3 rounded-[2rem] shadow-xl border-2 border-slate-100 flex items-center gap-2 overflow-x-auto scrollbar-hide">
+        <div className="flex-1 bg-white px-4 md:px-6 py-3 md:py-4 rounded-[2rem] md:rounded-[2.5rem] shadow-xl border-2 border-slate-100 flex items-center gap-4 md:gap-6 overflow-x-auto scrollbar-hide">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -55,25 +55,25 @@ export const TeachingResourcesView: React.FC<TeachingResourcesViewProps> = ({ on
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`flex items-center gap-3 px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-tighter whitespace-nowrap transition-all ${
+                className={`flex items-center gap-3 md:gap-4 px-6 md:px-10 py-4 md:py-5 rounded-2xl font-black text-xs md:text-sm uppercase tracking-widest whitespace-nowrap transition-all shadow-sm ${
                   isActive 
-                    ? 'bg-[#292667] text-white shadow-lg' 
-                    : 'text-slate-400 hover:bg-slate-50 hover:text-[#292667]'
+                    ? 'bg-[#292667] text-[#fbee21] shadow-xl border-b-6 border-black/10' 
+                    : 'bg-slate-50 text-slate-400 hover:bg-slate-100 hover:text-[#292667] border-2 border-slate-100'
                 }`}
               >
-                <Icon size={18} strokeWidth={isActive ? 3.5 : 2} />
+                <Icon size={18} md:size={20} strokeWidth={isActive ? 3.5 : 2.5} />
                 {tab.label}
               </button>
             );
           })}
         </div>
         
-        <div className="md:w-72 bg-white p-3 rounded-[2rem] shadow-xl border-2 border-slate-100 flex items-center px-6 gap-3">
-          <Search size={20} className="text-slate-300" strokeWidth={3} />
+        <div className="md:w-72 bg-white px-6 md:px-8 py-4 md:py-5 rounded-[2rem] shadow-xl border-2 border-slate-100 flex items-center gap-3">
+          <Search size={20} md:size={22} className="text-slate-300" strokeWidth={3} />
           <input 
             type="text" 
             placeholder="Search guides..." 
-            className="bg-transparent text-sm font-black text-[#292667] outline-none w-full placeholder:text-slate-200"
+            className="bg-transparent text-sm md:text-base font-black text-[#292667] outline-none w-full placeholder:text-slate-200"
           />
         </div>
       </div>
