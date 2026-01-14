@@ -17,12 +17,12 @@ const App: React.FC = () => {
   const [selectedCourse, setSelectedCourse] = useState<string>('Digital Kids Starter V2');
   const [student] = useState<Student>({
     id: 's1',
-    username: '1009921', // 7-digit ID as requested
+    username: '1009921',
     firstName: 'Lucky',
     lastName: 'Learner',
     points: 2450,
     stars: 12,
-    level: 'Digital Hero Grade 2',
+    level: 'Hero Grade 2',
     avatarSeed: 'Buddy',
     finalGrade: 95,
     attendance: 28,
@@ -66,8 +66,8 @@ const App: React.FC = () => {
   return (
     <div className="flex flex-col h-screen w-screen overflow-hidden bg-[#f8fafc] selection:bg-[#fbee21] selection:text-[#292667]">
       <Header 
-        schoolName="Student Portal" 
-        teacherCode={`Level: ${student.level}`} 
+        schoolName="U Book Store" 
+        teacherCode={`Lvl: ${student.level}`} 
         onMenuToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       />
       
@@ -90,8 +90,8 @@ const App: React.FC = () => {
           className="flex-1 relative flex flex-col overflow-hidden"
           style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/cubes.png')" }}
         >
-          <div className="flex-1 overflow-y-auto lg:overflow-hidden p-4 md:p-6 lg:p-8">
-            <div className="max-w-7xl mx-auto h-full flex flex-col animate-in fade-in zoom-in-95 duration-500">
+          <div className="flex-1 p-3 md:p-5 lg:p-6 min-h-0 overflow-hidden">
+            <div className="max-w-7xl mx-auto h-full flex flex-col animate-in fade-in zoom-in-95 duration-400">
               {renderView()}
             </div>
           </div>
