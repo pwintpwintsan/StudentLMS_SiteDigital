@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Layers, Sparkles, Star, ArrowRight, ShieldCheck, Lock, X, Zap, Trophy, Rocket } from 'lucide-react';
+import { Layers, Sparkles, Star, ArrowRight, ShieldCheck, Lock, X, Zap, Trophy, Rocket, Mail, AlertCircle } from 'lucide-react';
 
 interface UnlockModalProps {
   course: any;
@@ -9,40 +9,38 @@ interface UnlockModalProps {
 
 const UnlockCourseModal: React.FC<UnlockModalProps> = ({ course, onClose }) => (
   <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-[#292667]/70 backdrop-blur-md animate-in fade-in duration-300">
-    <div className="bg-white rounded-[4rem] p-10 max-w-xl w-full shadow-2xl border-t-[16px] border-[#f43f5e] relative animate-in zoom-in-95 duration-300">
-      <button onClick={onClose} className="absolute top-8 right-8 p-3 text-slate-300 hover:text-[#f43f5e] transition-colors bg-slate-50 rounded-2xl">
+    <div className="bg-white rounded-[4rem] p-10 max-w-xl w-full shadow-2xl border-t-[16px] border-[#ec2027] relative animate-in zoom-in-95 duration-300">
+      <button onClick={onClose} className="absolute top-8 right-8 p-3 text-slate-300 hover:text-[#ec2027] transition-colors bg-slate-50 rounded-2xl">
         <X size={24} strokeWidth={4} />
       </button>
 
       <div className="text-center mb-10">
-         <div className="w-24 h-24 bg-[#f43f5e] rounded-[2.5rem] flex items-center justify-center mx-auto mb-6 shadow-2xl rotate-6">
-            <Rocket size={48} className="text-white" strokeWidth={3} />
+         <div className="w-24 h-24 bg-[#fbee21] rounded-[2.5rem] flex items-center justify-center mx-auto mb-6 shadow-2xl rotate-6 border-4 border-white">
+            <Mail size={48} className="text-[#292667]" strokeWidth={3} />
          </div>
-         <h3 className="text-3xl font-black text-[#292667] uppercase tracking-tighter mb-2">Unlock {course.name}</h3>
-         <p className="text-slate-400 font-black uppercase text-[10px] tracking-[0.2em]">Ready for a New Adventure?</p>
+         <h3 className="text-3xl font-black text-[#292667] uppercase tracking-tighter mb-4">Master Course Locked</h3>
+         <p className="text-slate-500 font-bold text-base leading-relaxed max-w-xs mx-auto">
+            Ready to start <span className="text-[#ec2027] font-black underline decoration-2">{course.name}</span>? Please ask your parents or teacher to contact the <span className="text-[#292667] font-black">Main Center</span> for access!
+         </p>
       </div>
 
       <div className="grid grid-cols-1 gap-4 mb-10">
-         <div className="p-6 bg-slate-50 rounded-[2rem] border-2 border-slate-100 flex items-center gap-6">
-            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-[#f43f5e] shadow-sm"><Zap size={24} /></div>
+         <div className="p-6 bg-slate-50 rounded-[2.5rem] border-2 border-slate-100 flex items-center gap-6">
+            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-[#ec2027] shadow-sm"><AlertCircle size={24} /></div>
             <div>
-               <p className="font-black text-[#292667] uppercase text-sm">Action-Packed Modules</p>
-               <p className="text-[10px] font-bold text-slate-400">12 Video Missions & 24 Quizzes</p>
-            </div>
-         </div>
-         <div className="p-6 bg-slate-50 rounded-[2rem] border-2 border-slate-100 flex items-center gap-6">
-            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-amber-500 shadow-sm"><Trophy size={24} /></div>
-            <div>
-               <p className="font-black text-[#292667] uppercase text-sm">Exclusive Certificates</p>
-               <p className="text-[10px] font-bold text-slate-400">Earn the Master Hero Badge</p>
+               <p className="font-black text-[#292667] uppercase text-sm">Main Center Approval</p>
+               <p className="text-[10px] font-bold text-slate-400">Administrators will enable this on your account.</p>
             </div>
          </div>
       </div>
 
       <div className="flex flex-col gap-3">
-         <button className="w-full py-6 bg-[#f43f5e] text-white rounded-[2rem] font-black text-xl uppercase tracking-widest shadow-2xl hover:bg-[#292667] transition-all border-b-8 border-black/20 flex items-center justify-center gap-4">
-            Unlock with 2000 <Star className="fill-[#fbee21] text-[#fbee21] border-none" strokeWidth={0} />
-         </button>
+         <a 
+           href="mailto:admin@ubookstore.com"
+           className="w-full py-6 bg-[#292667] text-[#fbee21] rounded-[2rem] font-black text-xl uppercase tracking-widest shadow-2xl hover:bg-[#ec2027] hover:text-white transition-all border-b-8 border-black/20 flex items-center justify-center gap-4"
+         >
+            Message Admin
+         </a>
          <button onClick={onClose} className="w-full py-4 text-slate-300 font-black uppercase text-xs tracking-widest hover:text-[#292667] transition-all">
             Maybe Later
          </button>
@@ -61,7 +59,7 @@ export const OtherCoursesView: React.FC<OtherCoursesViewProps> = ({ onEnterCours
   const courses = [
     { id: 1, name: 'Robotics Mastery', desc: 'Build your first autonomous robot with real hardware simulation.', level: 'Level 2', status: 'Unlocked', isPurchased: true, color: '#ec2027' },
     { id: 2, name: 'AI For Heroes', desc: 'Learn how smart machines think and create their own art.', level: 'Level 3', status: 'Premium', isPurchased: false, color: '#3b82f6' },
-    { id: 3, name: 'Web Creators', desc: 'Design your own internet space with HTML and CSS blocks.', level: 'Level 1', status: 'Unlocked', isPurchased: true, color: '#00a651' },
+    { id: 3, name: 'Web Creators', desc: 'Design your own internet space with HTML and CSS blocks.', level: 'Level 1', status: 'Locked', isPurchased: false, color: '#00a651' },
     { id: 4, name: 'Game Architecture', desc: 'Advanced patterns for professional game development.', level: 'Level 3', status: 'Locked', isPurchased: false, color: '#a855f7' },
   ];
 
@@ -98,12 +96,12 @@ export const OtherCoursesView: React.FC<OtherCoursesViewProps> = ({ onEnterCours
                    className="w-20 h-20 rounded-[2rem] flex items-center justify-center shadow-lg transition-transform group-hover:rotate-12"
                    style={{ backgroundColor: `${course.color}15`, color: course.color }}
                  >
-                    {course.isPurchased ? <Sparkles size={40} /> : <Lock size={40} />}
+                    {course.isPurchased ? <Sparkles size={40} /> : <Lock size={40} className="text-[#ec2027]" />}
                  </div>
                  <span className={`px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm ${
-                   course.isPurchased ? 'bg-green-50 text-[#00a651] border border-green-100' : 'bg-slate-50 text-slate-400 border border-slate-200'
+                   course.isPurchased ? 'bg-green-50 text-[#00a651] border border-green-100' : 'bg-slate-50 text-[#ec2027] border border-[#ec2027]/20'
                  }`}>
-                    {course.status}
+                    {course.isPurchased ? 'Unlocked' : 'Locked'}
                  </span>
               </div>
               
@@ -130,7 +128,7 @@ export const OtherCoursesView: React.FC<OtherCoursesViewProps> = ({ onEnterCours
                     : 'bg-[#f43f5e] text-white hover:bg-[#ec2027]'
                 }`}
               >
-                {course.isPurchased ? 'Enter Course' : 'Unlock Now'} 
+                {course.isPurchased ? 'Enter Course' : 'Request Access'} 
                 <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" strokeWidth={3} />
               </button>
 

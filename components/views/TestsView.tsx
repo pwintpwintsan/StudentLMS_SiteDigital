@@ -5,12 +5,12 @@ import { ClipboardCheck, Sparkles, Play, Star, CheckCircle2, Lock } from 'lucide
 const SwitchToggle = ({ active, onClick }: { active: boolean; onClick: () => void }) => (
   <button 
     onClick={onClick}
-    className={`w-14 h-7 rounded-full relative transition-all duration-300 shadow-inner overflow-hidden ${active ? 'bg-[#00a651]' : 'bg-slate-200'}`}
+    className={`w-20 h-10 rounded-full relative transition-all duration-300 shadow-inner overflow-hidden border-2 ${active ? 'bg-[#00a651] border-[#00a651]' : 'bg-slate-200 border-slate-300'}`}
   >
     <div 
-      className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300 flex items-center justify-center ${active ? 'translate-x-7' : 'translate-x-0'}`}
+      className={`absolute top-1 left-1 w-7 h-7 bg-white rounded-full shadow-lg transition-transform duration-300 flex items-center justify-center ${active ? 'translate-x-10' : 'translate-x-0'}`}
     >
-      <div className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-[#00a651]' : 'bg-slate-300'}`}></div>
+      <div className={`w-2.5 h-2.5 rounded-full ${active ? 'bg-[#00a651]' : 'bg-slate-300'}`}></div>
     </div>
   </button>
 );
@@ -38,44 +38,44 @@ export const TestsView: React.FC<TestsViewProps> = ({ onEnterCourse }) => {
              <ClipboardCheck size={42} strokeWidth={3.5} />
            </div>
            <div>
-             <h2 className="text-4xl font-black leading-none tracking-tight uppercase">Mission <span className="text-[#fbee21]">Tests</span></h2>
-             <p className="text-[12px] font-black text-[#fbee21] uppercase tracking-[0.15em] mt-3">Final Challenges for Mastery</p>
+             <h2 className="text-3xl md:text-4xl font-black leading-none tracking-tight uppercase">Mission <span className="text-[#fbee21]">Tests</span></h2>
+             <p className="text-[12px] md:text-[14px] font-black text-[#fbee21] uppercase tracking-[0.15em] mt-3">Final Challenges for Mastery</p>
            </div>
         </div>
         
-        <div className="bg-white/10 px-8 py-4 rounded-[2rem] flex items-center gap-5 relative z-10 border-2 border-white/10">
+        <div className="bg-white/10 px-8 py-5 rounded-[2.5rem] flex items-center gap-6 relative z-10 border-2 border-white/10 shadow-lg">
            <div className="text-right">
               <p className="text-[10px] font-black uppercase tracking-widest text-white/60">Revision Mode</p>
-              <p className="text-sm font-black text-[#fbee21] uppercase">Practice On</p>
+              <p className="text-lg font-black text-[#fbee21] uppercase">Practice On</p>
            </div>
            <SwitchToggle active={prepMode} onClick={() => setPrepMode(!prepMode)} />
         </div>
       </div>
 
       <div className="flex-1 overflow-y-auto scrollbar-hide">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-8">
           {testItems.map((test) => (
-            <div key={test.id} className={`bg-white rounded-[3rem] p-8 border-2 transition-all group relative overflow-hidden flex flex-col ${test.status === 'ready' ? 'border-[#f43f5e] shadow-xl' : 'border-slate-100 opacity-60'}`}>
-              <div className="flex justify-between items-start mb-6">
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${test.status === 'ready' ? 'bg-[#f43f5e]/10 text-[#f43f5e]' : 'bg-slate-50 text-slate-300'}`}>
-                   {test.status === 'ready' ? <Play size={28} fill="currentColor" strokeWidth={0} /> : <Lock size={28} />}
+            <div key={test.id} className={`bg-white rounded-[3.5rem] p-10 border-4 transition-all group relative overflow-hidden flex flex-col ${test.status === 'ready' ? 'border-[#f43f5e] shadow-xl' : 'border-slate-100 opacity-60 grayscale-[0.3]'}`}>
+              <div className="flex justify-between items-start mb-8">
+                <div className={`w-16 h-16 rounded-[1.8rem] flex items-center justify-center ${test.status === 'ready' ? 'bg-[#f43f5e]/10 text-[#f43f5e] shadow-inner' : 'bg-slate-50 text-slate-300'}`}>
+                   {test.status === 'ready' ? <Play size={32} fill="currentColor" strokeWidth={0} /> : <Lock size={32} />}
                 </div>
                 <div className="text-right">
-                   <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Reward</p>
-                   <p className="text-lg font-black text-[#292667] flex items-center gap-1.5">{test.reward} <Star className="fill-[#fbee21] text-[#fbee21]" size={16} /></p>
+                   <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Hero XP</p>
+                   <p className="text-2xl font-black text-[#292667] flex items-center gap-2 leading-none">{test.reward} <Star className="fill-[#fbee21] text-[#fbee21]" size={20} /></p>
                 </div>
               </div>
               
-              <h4 className="text-xl font-black text-[#292667] uppercase tracking-tight mb-6">{test.title}</h4>
+              <h4 className="text-2xl font-black text-[#292667] uppercase tracking-tight mb-8 leading-tight">{test.title}</h4>
               
               <button 
                 onClick={() => test.status === 'ready' && onEnterCourse(test.course)}
-                className={`w-full py-4 rounded-2xl font-black text-xs uppercase tracking-widest transition-all ${test.status === 'ready' ? 'bg-[#f43f5e] text-white shadow-lg active:scale-95' : 'bg-slate-100 text-slate-400 cursor-not-allowed'}`}>
-                {test.status === 'ready' ? 'Start Challenge' : 'Unlock First'}
+                className={`w-full py-6 rounded-[2rem] font-black text-sm uppercase tracking-widest transition-all shadow-lg active:scale-95 border-b-6 border-black/10 ${test.status === 'ready' ? 'bg-[#f43f5e] text-white hover:bg-[#ec2027]' : 'bg-slate-100 text-slate-400 cursor-not-allowed'}`}>
+                {test.status === 'ready' ? 'Start Challenge' : 'Mission Locked'}
               </button>
 
-              <div className="absolute -bottom-4 -right-4 opacity-[0.03] text-[#292667] pointer-events-none group-hover:opacity-10 transition-opacity">
-                 <Sparkles size={100} />
+              <div className="absolute -bottom-6 -right-6 opacity-[0.03] text-[#292667] pointer-events-none group-hover:opacity-10 transition-opacity">
+                 <Sparkles size={120} />
               </div>
             </div>
           ))}

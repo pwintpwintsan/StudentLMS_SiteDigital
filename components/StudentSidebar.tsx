@@ -9,7 +9,9 @@ import {
   Layers,
   Sparkles,
   CalendarCheck,
-  X
+  X,
+  LogOut,
+  User
 } from 'lucide-react';
 import { View } from '../types';
 
@@ -35,41 +37,41 @@ export const StudentSidebar: React.FC<StudentSidebarProps> = ({ currentView, onV
     fixed inset-y-0 left-0 z-50 w-64 md:w-72 bg-[#292667] text-white flex flex-col transition-transform duration-300 transform
     lg:relative lg:translate-x-0 lg:z-0 lg:shadow-none
     ${isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'}
-    border-r-[8px] md:border-r-[12px] border-[#fbee21] shrink-0 overflow-hidden
+    border-r-[12px] md:border-r-[16px] border-[#fbee21] shrink-0 overflow-hidden
   `;
 
   return (
     <div className={sidebarClasses}>
-      <div className="p-4 md:p-6 flex-1 overflow-hidden flex flex-col justify-start relative">
+      <div className="p-5 md:p-8 flex-1 overflow-hidden flex flex-col justify-start relative">
         
         {/* Mobile Close Button */}
         <button 
           onClick={onClose}
-          className="lg:hidden absolute top-4 right-4 p-2 text-white/50 hover:text-white"
+          className="lg:hidden absolute top-4 right-4 p-2.5 text-white/50 hover:text-white bg-white/10 rounded-xl"
         >
-          <X size={20} strokeWidth={3} />
+          <X size={24} strokeWidth={3} />
         </button>
 
-        <div className="bg-white/10 p-4 md:p-5 rounded-[2rem] border-2 border-dashed border-[#fbee21]/30 relative group cursor-pointer overflow-hidden shrink-0 mb-4 md:mb-6 text-center transition-all hover:bg-white/15">
-          <div className="relative inline-block mb-2">
-             <div className="w-16 h-16 md:w-20 md:h-20 bg-[#fbee21] rounded-[1.5rem] md:rounded-[2rem] flex items-center justify-center rotate-3 shadow-xl mx-auto border-2 border-white">
+        <div className="bg-white/10 p-6 rounded-[2.5rem] border-2 border-dashed border-[#fbee21]/30 relative group cursor-pointer overflow-hidden shrink-0 mb-6 md:mb-8 text-center transition-all hover:bg-white/15">
+          <div className="relative inline-block mb-3">
+             <div className="w-20 h-20 md:w-24 md:h-24 bg-[#fbee21] rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center rotate-3 shadow-xl mx-auto border-4 border-white">
                 <img 
                   src="https://api.dicebear.com/7.x/adventurer/svg?seed=Buddy&backgroundColor=fbee21" 
-                  className="w-12 h-12 md:w-16 md:h-16 drop-shadow-lg" 
+                  className="w-16 h-16 md:w-20 md:h-20 drop-shadow-lg" 
                   alt="Student Avatar" 
                 />
              </div>
-             <div className="absolute -bottom-1 -right-1 bg-[#ec2027] text-white p-1.5 rounded-xl shadow-lg border-2 border-white animate-bounce">
-                <Sparkles size={12} strokeWidth={4} />
+             <div className="absolute -bottom-2 -right-1 bg-[#ec2027] text-white p-2.5 rounded-xl shadow-lg border-2 border-white animate-bounce">
+                <Sparkles size={16} strokeWidth={4} />
              </div>
           </div>
-          <h4 className="text-base md:text-lg font-black leading-none mt-1 text-white">Buddy Learner</h4>
-          <div className="mt-2 flex items-center justify-center gap-2">
-            <span className="bg-[#fbee21] text-[#292667] px-2 py-0.5 rounded-lg text-[8px] font-black uppercase tracking-widest">Super Star</span>
+          <h4 className="text-xl md:text-2xl font-black leading-none mt-2 text-white">Buddy Learner</h4>
+          <div className="mt-3 flex items-center justify-center gap-2">
+            <span className="bg-[#fbee21] text-[#292667] px-4 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest">Super Star</span>
           </div>
         </div>
 
-        <nav className="space-y-1 md:space-y-2 flex-1 overflow-y-auto scrollbar-hide py-1">
+        <nav className="space-y-2.5 md:space-y-4 flex-1 overflow-y-auto scrollbar-hide py-1">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = currentView === item.id;
@@ -77,29 +79,50 @@ export const StudentSidebar: React.FC<StudentSidebarProps> = ({ currentView, onV
               <button
                 key={item.id}
                 onClick={() => onViewChange(item.id)}
-                className={`w-full group flex items-center gap-3 px-3 md:px-4 py-2.5 md:py-3.5 rounded-[1.2rem] md:rounded-[1.5rem] transition-all duration-300 ${
+                className={`w-full group flex items-center gap-4 px-4 py-4 md:py-5 rounded-[1.8rem] transition-all duration-300 ${
                   isActive 
-                    ? 'bg-[#fbee21] text-[#292667] shadow-xl scale-102 border-b-2 md:border-b-4 border-[#292667]/20' 
+                    ? 'bg-[#fbee21] text-[#292667] shadow-xl scale-102 border-b-6 md:border-b-8 border-[#292667]/20' 
                     : 'hover:bg-white/10 text-white/70 hover:text-white'
                 }`}
               >
                 <div 
-                  className={`p-2 rounded-lg md:rounded-xl transition-all duration-200 group-hover:rotate-12 flex-shrink-0 shadow-md ${isActive ? 'bg-[#292667]' : ''}`}
+                  className={`p-3 rounded-2xl transition-all duration-200 group-hover:rotate-12 flex-shrink-0 shadow-md ${isActive ? 'bg-[#292667]' : ''}`}
                   style={{ backgroundColor: isActive ? '#292667' : item.color }}
                 >
                   <Icon 
-                    size={18} md:size={20}
+                    size={22} md:size={24}
                     strokeWidth={3.5} 
                     className={isActive ? 'text-[#fbee21]' : 'text-white'} 
                   />
                 </div>
-                <span className={`text-[12px] md:text-[14px] font-black uppercase tracking-tight text-left`}>
+                <span className={`text-[14px] md:text-[16px] font-black uppercase tracking-tight text-left`}>
                   {item.label}
                 </span>
               </button>
             );
           })}
         </nav>
+      </div>
+
+      {/* Logout & Profile Footer */}
+      <div className="p-5 md:p-8 shrink-0 bg-[#292667] border-t-2 border-white/10">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3 bg-white/5 p-3 rounded-2xl flex-1 border border-white/10">
+            <div className="p-2 bg-[#fbee21] rounded-lg">
+              <User size={18} className="text-[#292667]" strokeWidth={3} />
+            </div>
+            <div className="overflow-hidden">
+              <p className="text-[10px] font-black text-[#fbee21] uppercase tracking-widest leading-none mb-1">Username</p>
+              <p className="text-sm font-mono font-black text-white truncate">1009921</p>
+            </div>
+          </div>
+          <button 
+            className="p-4 bg-[#ec2027] text-white rounded-2xl shadow-lg hover:bg-[#991b1b] transition-all active:scale-90 border-b-4 border-black/20 group"
+            title="Log Out"
+          >
+            <LogOut size={24} strokeWidth={3} className="group-hover:-translate-x-1 transition-transform" />
+          </button>
+        </div>
       </div>
     </div>
   );
