@@ -10,7 +10,7 @@ export enum View {
   OTHER_COURSES = 'other-courses',
   PROFILE = 'profile',
   
-  // Teacher Portal Views (Fixing missing properties used in Sidebar.tsx)
+  // Teacher Portal Views
   MY_CLASSES = 'my-classes',
   STUDENTS = 'students',
   GRADES = 'grades',
@@ -28,6 +28,7 @@ export interface Task {
   description: string;
   status: 'completed' | 'active' | 'locked';
   type: TaskType;
+  duration?: string; // New: Estimated time for the task
   content?: any;
 }
 
