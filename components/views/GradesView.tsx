@@ -49,7 +49,7 @@ export const GradesView: React.FC = () => {
       </div>
 
       {/* Course Filter Tabs - Compact but Balanced */}
-      <div className="flex items-center gap-3 md:gap-4 bg-white px-4 md:px-6 py-2 md:py-3 rounded-[2rem] md:rounded-[2.5rem] shadow-md border-2 border-slate-50 overflow-x-auto scrollbar-hide flex-shrink-0">
+      <div className="flex items-center gap-4 md:gap-6 bg-white px-4 md:px-6 py-3 md:py-4 rounded-[2rem] md:rounded-[2.5rem] shadow-md border-2 border-slate-50 overflow-x-auto scrollbar-hide flex-shrink-0">
         {[
           { name: "Robotics Mastery", icon: Cpu, color: "#ec2027" },
           { name: "Digital Kids Starter V2", icon: Rocket, color: "#a855f7" }
@@ -60,13 +60,13 @@ export const GradesView: React.FC = () => {
             <button
               key={course.name}
               onClick={() => setSelectedCourse(course.name)}
-              className={`flex items-center gap-2.5 md:gap-3 px-5 md:px-8 py-3 md:py-4 rounded-xl font-black text-[9px] md:text-[11px] uppercase tracking-widest whitespace-nowrap transition-all shadow-sm ${
+              className={`flex items-center gap-3 md:gap-4 px-6 md:px-10 py-4 md:py-5 rounded-2xl font-black text-[10px] md:text-[12px] uppercase tracking-widest whitespace-nowrap transition-all shadow-sm ${
                 isActive 
                   ? 'bg-[#292667] text-[#fbee21] shadow-xl border-b-6 border-black/10' 
                   : 'bg-slate-50 text-slate-400 hover:bg-slate-100 hover:text-[#292667] border-2 border-slate-100'
               }`}
             >
-              <Icon size={14} md:size={18} strokeWidth={3.5} />
+              <Icon size={16} md:size={18} strokeWidth={3.5} />
               {course.name}
             </button>
           );

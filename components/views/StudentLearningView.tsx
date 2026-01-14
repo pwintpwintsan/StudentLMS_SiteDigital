@@ -407,7 +407,7 @@ export const StudentLearningView: React.FC<StudentLearningViewProps> = ({ select
         </div>
       </div>
 
-      <div className="bg-white px-4 md:px-6 py-2 md:py-3 rounded-[2rem] md:rounded-[2.5rem] shadow-xl border-2 border-slate-100 flex items-center gap-3 md:gap-4 overflow-x-auto scrollbar-hide flex-shrink-0">
+      <div className="bg-white px-4 md:px-6 py-3 md:py-4 rounded-[2rem] md:rounded-[2.5rem] shadow-xl border-2 border-slate-100 flex items-center gap-4 md:gap-6 overflow-x-auto scrollbar-hide flex-shrink-0">
         {[
           { name: "Robotics Mastery", icon: Cpu, color: "#ec2027" },
           { name: "Digital Kids Starter V2", icon: Rocket, color: "#a855f7" },
@@ -431,16 +431,16 @@ export const StudentLearningView: React.FC<StudentLearningViewProps> = ({ select
                 setIsTestFinished(false);
                 setQuizStep(0);
               }}
-              className={`flex items-center gap-2.5 md:gap-3 px-5 md:px-8 py-3 md:py-4 rounded-xl md:rounded-[1.8rem] font-black text-[9px] md:text-[11px] uppercase tracking-widest whitespace-nowrap transition-all group shrink-0 ${
+              className={`flex items-center gap-3 md:gap-4 px-6 md:px-10 py-4 md:py-5 rounded-2xl md:rounded-[1.8rem] font-black text-[10px] md:text-[12px] uppercase tracking-widest whitespace-nowrap transition-all group shrink-0 ${
                 isActive 
-                  ? 'bg-[#292667] text-[#fbee21] shadow-xl scale-102 border-b-6 md:border-b-8 border-black/20' 
+                  ? 'bg-[#292667] text-[#fbee21] shadow-2xl scale-102 border-b-6 md:border-b-8 border-black/20' 
                   : 'bg-slate-50 text-slate-400 border-2 border-slate-100 hover:bg-slate-100 hover:text-[#292667]'
               }`}
             >
               {isLocked ? (
-                <Lock size={14} md:size={18} strokeWidth={3.5} className="text-[#ec2027]" />
+                <Lock size={16} md:size={20} strokeWidth={3.5} className="text-[#ec2027]" />
               ) : (
-                <Icon size={14} md:size={18} strokeWidth={3.5} />
+                <Icon size={16} md:size={20} strokeWidth={3.5} />
               )}
               {course.name}
             </button>
@@ -448,10 +448,10 @@ export const StudentLearningView: React.FC<StudentLearningViewProps> = ({ select
         })}
         <button 
           onClick={() => setShowAddCourseModal(true)}
-          className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl bg-slate-100 text-[#00a651] border-2 border-dashed border-[#00a651]/40 hover:bg-[#00a651] hover:text-white transition-all shadow-md active:scale-90 shrink-0"
+          className="flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-slate-100 text-[#00a651] border-3 border-dashed border-[#00a651]/40 hover:bg-[#00a651] hover:text-white transition-all shadow-md active:scale-90 shrink-0"
           title="Add More Courses"
         >
-          <Plus size={20} md:size={24} strokeWidth={4} />
+          <Plus size={24} md:size={28} strokeWidth={4} />
         </button>
       </div>
 
