@@ -24,88 +24,70 @@ export const ReportsView: React.FC = () => {
   const COLORS = ['#ec2027', '#00a651', '#3b82f6', '#fbee21', '#a855f7'];
 
   return (
-    <div className="h-full flex flex-col gap-6 overflow-hidden">
-      {/* Consistent Full-Width Header Bar */}
-      <div className="w-full bg-[#292667] rounded-[3rem] p-8 text-white shadow-2xl border-b-[12px] border-[#3b82f6] flex flex-col md:flex-row items-center justify-between gap-8 flex-shrink-0 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full -mr-24 -mt-24 blur-3xl"></div>
-        
-        <div className="flex items-center gap-6 relative z-10">
-           <div className="p-5 bg-[#3b82f6] rounded-[2rem] text-white shadow-xl rotate-3">
-             <BarChart3 size={42} strokeWidth={3} />
+    <div className="h-full flex flex-col gap-3 md:gap-5 overflow-hidden">
+      {/* Universal Compact Hero Header - Standardized */}
+      <div className="w-full bg-[#292667] rounded-[1.8rem] md:rounded-[2.2rem] p-4 md:p-6 text-white shadow-lg border-b-[6px] md:border-b-[10px] border-[#3b82f6] flex flex-col md:flex-row items-center justify-between gap-3 md:gap-6 flex-shrink-0 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 md:w-80 md:h-80 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+        <div className="flex items-center gap-3 md:gap-6 relative z-10 w-full md:w-auto">
+           <div className="p-3 md:p-4 bg-[#3b82f6] rounded-xl md:rounded-[1.5rem] text-white shadow-xl rotate-3">
+             <BarChart3 size={24} md:size={36} strokeWidth={3.5} />
            </div>
            <div>
-             <h2 className="text-4xl font-black leading-none tracking-tight uppercase">Data <span className="text-[#fbee21]">Insights</span></h2>
-             <div className="flex items-center gap-3 mt-3">
-                <span className="px-3 py-1 bg-white/10 rounded-lg text-[11px] font-black uppercase tracking-[0.1em] text-white">LIVE ANALYTICS</span>
-                <span className="text-[12px] font-black text-[#fbee21] uppercase tracking-[0.15em]">U Book Store Performance</span>
-             </div>
-           </div>
-        </div>
-
-        <div className="flex items-center gap-12 px-10 md:border-l-4 border-white/10 relative z-10">
-           <div className="text-center group cursor-default">
-              <p className="text-5xl font-black text-[#00a651]">94%</p>
-              <p className="text-[11px] font-black uppercase text-white/60 tracking-[0.2em] mt-2">Attendance</p>
-           </div>
-           <div className="w-px h-16 bg-white/10 hidden md:block"></div>
-           <div className="text-center group cursor-default">
-              <p className="text-5xl font-black text-[#ec2027]">88%</p>
-              <p className="text-[11px] font-black uppercase text-white/60 tracking-[0.2em] mt-2">Avg Performance</p>
+             <h2 className="text-xl md:text-3xl font-black leading-none tracking-tight uppercase">Data <span className="text-[#fbee21]">Insights</span></h2>
+             <p className="text-[9px] md:text-[11px] font-black text-[#fbee21] uppercase tracking-[0.2em] mt-1 md:mt-2">Live Analytics Lab</p>
            </div>
         </div>
       </div>
 
-      {/* Row 2: Filtering Controls */}
-      <div className="w-full bg-white p-4 rounded-[2.5rem] shadow-xl border-2 border-slate-100 flex flex-col sm:flex-row items-center gap-4 flex-shrink-0">
-        <div className="flex flex-1 items-center gap-4 w-full">
-          <div className="flex-1 flex items-center gap-4 bg-slate-50 px-6 py-4 rounded-[1.5rem] border-2 border-slate-100 group focus-within:border-[#3b82f6]">
-            <Filter size={20} className="text-slate-400" strokeWidth={3} />
+      {/* Row 2: Filtering Controls - Compact */}
+      <div className="w-full bg-white p-3 md:p-4 rounded-[1.5rem] md:rounded-[2rem] shadow-md border-2 border-slate-100 flex flex-col sm:flex-row items-center gap-3 md:gap-4 flex-shrink-0">
+        <div className="flex flex-1 items-center gap-3 w-full">
+          <div className="flex-1 flex items-center gap-2 md:gap-3 bg-slate-50 px-4 py-2.5 md:py-3.5 rounded-xl md:rounded-[1.2rem] border-2 border-slate-100 group focus-within:border-[#3b82f6]">
+            <Filter size={16} md:size={18} className="text-slate-400" strokeWidth={3} />
             <select 
               value={selectedClassId}
               onChange={(e) => setSelectedClassId(e.target.value)}
-              className="bg-transparent text-sm font-black text-[#292667] outline-none w-full uppercase"
+              className="bg-transparent text-[10px] md:text-xs font-black text-[#292667] outline-none w-full uppercase tracking-widest"
             >
               {MOCK_CLASSES.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
             </select>
           </div>
-          <div className="flex-1 flex items-center gap-4 bg-slate-50 px-6 py-4 rounded-[1.5rem] border-2 border-slate-100 group focus-within:border-[#3b82f6]">
-            <Calendar size={20} className="text-slate-400" strokeWidth={3} />
+          <div className="flex-1 flex items-center gap-2 md:gap-3 bg-slate-50 px-4 py-2.5 md:py-3.5 rounded-xl md:rounded-[1.2rem] border-2 border-slate-100 group focus-within:border-[#3b82f6]">
+            <Calendar size={16} md:size={18} className="text-slate-400" strokeWidth={3} />
             <select 
               value={selectedMonth}
               onChange={(e) => setSelectedMonth(e.target.value)}
-              className="bg-transparent text-sm font-black text-[#292667] outline-none w-full uppercase"
+              className="bg-transparent text-[10px] md:text-xs font-black text-[#292667] outline-none w-full uppercase tracking-widest"
             >
               {MONTHS.map(m => <option key={m} value={m}>{m}</option>)}
             </select>
           </div>
         </div>
 
-        <button className="flex items-center gap-4 px-10 py-5 bg-[#292667] text-white rounded-[2rem] font-black text-sm uppercase tracking-[0.15em] shadow-2xl hover:bg-[#ec2027] transition-all active:scale-95 border-b-6 border-black/20 shrink-0">
-          <Download size={24} strokeWidth={3} />
+        <button className="flex items-center gap-2 md:gap-3 px-6 md:px-8 py-3 md:py-4 bg-[#292667] text-white rounded-xl md:rounded-[1.2rem] font-black text-[10px] md:text-xs uppercase tracking-widest shadow-lg hover:bg-[#ec2027] transition-all active:scale-95 border-b-4 border-black/20 shrink-0">
+          <Download size={18} md:size={20} strokeWidth={3} />
           <span>Export PDF</span>
         </button>
       </div>
 
-      {/* Charts Grid - More Robust */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 flex-1 overflow-hidden pb-4">
-        <div className="bg-white p-8 rounded-[3rem] border-2 border-slate-100 shadow-xl flex flex-col">
-          <div className="mb-6 flex items-center justify-between">
-            <div>
-              <h3 className="text-xl font-black text-[#292667] uppercase tracking-tight flex items-center gap-3">
-                 <div className="w-3 h-3 bg-[#00a651] rounded-full animate-pulse"></div> 
-                 Learner Attendance
-              </h3>
-              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">Days Present / 31</p>
-            </div>
+      {/* Charts Grid - Compacted */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 flex-1 overflow-hidden pb-4">
+        <div className="bg-white p-5 md:p-8 rounded-[1.8rem] md:rounded-[2.5rem] border-2 border-slate-50 shadow-lg flex flex-col min-h-0">
+          <div className="mb-4 md:mb-6 shrink-0">
+            <h3 className="text-xs md:text-lg font-black text-[#292667] uppercase tracking-tight flex items-center gap-2">
+               <div className="w-2 h-2 md:w-3 md:h-3 bg-[#00a651] rounded-full animate-pulse"></div> 
+               Attendance Trend
+            </h3>
+            <p className="text-[8px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest mt-0.5">Days Present / 31</p>
           </div>
           <div className="flex-1 min-h-0">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={filteredData} margin={{ top: 0, right: 30, left: 0, bottom: 0 }}>
+              <BarChart data={filteredData} margin={{ top: 0, right: 10, left: 0, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 10, fontWeight: 900, fill: '#64748b' }} />
-                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fontWeight: 900, fill: '#64748b' }} domain={[0, 31]} />
-                <Tooltip cursor={{ fill: '#f8fafc' }} contentStyle={{ borderRadius: '20px', border: 'none', boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)', fontSize: '12px', fontWeight: 900 }} />
-                <Bar dataKey="attendance" radius={[12, 12, 0, 0]} barSize={40}>
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 9, fontWeight: 900, fill: '#64748b' }} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 9, fontWeight: 900, fill: '#64748b' }} domain={[0, 31]} />
+                <Tooltip cursor={{ fill: '#f8fafc' }} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)', fontSize: '10px', fontWeight: 900 }} />
+                <Bar dataKey="attendance" radius={[8, 8, 0, 0]} barSize={32}>
                   {filteredData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
@@ -115,24 +97,22 @@ export const ReportsView: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white p-8 rounded-[3rem] border-2 border-slate-100 shadow-xl flex flex-col">
-          <div className="mb-6 flex items-center justify-between">
-            <div>
-              <h3 className="text-xl font-black text-[#292667] uppercase tracking-tight flex items-center gap-3">
-                 <div className="w-3 h-3 bg-[#ec2027] rounded-full animate-pulse"></div> 
-                 Academic Score
-              </h3>
-              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">Percentage Performance</p>
-            </div>
+        <div className="bg-white p-5 md:p-8 rounded-[1.8rem] md:rounded-[2.5rem] border-2 border-slate-50 shadow-lg flex flex-col min-h-0">
+          <div className="mb-4 md:mb-6 shrink-0">
+            <h3 className="text-xs md:text-lg font-black text-[#292667] uppercase tracking-tight flex items-center gap-2">
+               <div className="w-2 h-2 md:w-3 md:h-3 bg-[#ec2027] rounded-full animate-pulse"></div> 
+               Academic Score
+            </h3>
+            <p className="text-[8px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest mt-0.5">Mastery Achievement</p>
           </div>
           <div className="flex-1 min-h-0">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={filteredData} layout="vertical" margin={{ top: 0, right: 30, left: 40, bottom: 0 }}>
+              <BarChart data={filteredData} layout="vertical" margin={{ top: 0, right: 20, left: 30, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f1f5f9" />
-                <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 10, fontWeight: 900, fill: '#64748b' }} domain={[0, 100]} />
-                <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{ fontSize: 10, fontWeight: 900, fill: '#64748b' }} />
-                <Tooltip cursor={{ fill: '#f8fafc' }} contentStyle={{ borderRadius: '20px', border: 'none', boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)', fontSize: '12px', fontWeight: 900 }} />
-                <Bar dataKey="performance" radius={[0, 12, 12, 0]} barSize={32}>
+                <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 9, fontWeight: 900, fill: '#64748b' }} domain={[0, 100]} />
+                <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{ fontSize: 9, fontWeight: 900, fill: '#64748b' }} />
+                <Tooltip cursor={{ fill: '#f8fafc' }} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)', fontSize: '10px', fontWeight: 900 }} />
+                <Bar dataKey="performance" radius={[0, 8, 8, 0]} barSize={24}>
                   {filteredData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}

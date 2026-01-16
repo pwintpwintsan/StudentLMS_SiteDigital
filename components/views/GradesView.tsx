@@ -126,23 +126,13 @@ export const GradesView: React.FC = () => {
       {/* UNIVERSAL COMPACT HERO HEADER */}
       <div className="w-full bg-[#292667] rounded-[1.8rem] md:rounded-[2.2rem] p-4 md:p-6 text-white shadow-lg border-b-[6px] md:border-b-[10px] border-[#00a651] flex flex-col md:flex-row items-center justify-between gap-3 md:gap-6 flex-shrink-0 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 md:w-80 md:h-80 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl"></div>
-        <div className="flex items-center gap-3 md:gap-6 relative z-10">
+        <div className="flex items-center gap-3 md:gap-6 relative z-10 w-full md:w-auto">
            <div className="p-3 md:p-4 bg-[#00a651] rounded-xl md:rounded-[1.5rem] text-white shadow-xl rotate-3">
-             <Star size={24} md:size={32} strokeWidth={3.5} fill="currentColor" />
+             <Star size={24} md:size={36} strokeWidth={3.5} fill="currentColor" />
            </div>
            <div>
              <h2 className="text-xl md:text-3xl font-black leading-none tracking-tight uppercase">My <span className="text-[#fbee21]">Stars</span></h2>
              <p className="text-[9px] md:text-[11px] font-black text-[#fbee21] uppercase tracking-[0.2em] mt-1 md:mt-2">Performance Tracking Lab</p>
-           </div>
-        </div>
-        
-        <div className="hidden lg:flex bg-white/10 px-6 py-3 rounded-[1.5rem] border-2 border-white/5 items-center gap-4 relative z-10">
-           <div className="text-right">
-              <p className="text-[8px] font-black uppercase text-white/50 tracking-widest leading-none">Global Rank</p>
-              <p className="text-xl font-black text-[#fbee21] mt-0.5">#12</p>
-           </div>
-           <div className="w-10 h-10 bg-[#fbee21] rounded-xl flex items-center justify-center rotate-6 shadow-md">
-              <Award className="text-[#292667]" size={20} />
            </div>
         </div>
       </div>
@@ -240,24 +230,6 @@ export const GradesView: React.FC = () => {
                     </div>
                  </div>
               ))}
-           </div>
-
-           <div className="mt-4 md:mt-6 p-4 md:p-6 bg-[#292667] rounded-[1.5rem] md:rounded-[2rem] text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl overflow-hidden relative border-b-[6px] md:border-b-[10px] border-black/20 flex-shrink-0">
-              <div className="absolute top-0 right-0 p-6 opacity-[0.03]">
-                 <Rocket size={100} />
-              </div>
-              <div className="flex items-center gap-4 md:gap-6 relative z-10">
-                 <div className="w-10 h-10 md:w-16 md:h-16 bg-[#fbee21] rounded-xl md:rounded-[1.2rem] flex items-center justify-center rotate-3 shadow-xl shrink-0">
-                    <Star className="fill-[#292667] text-[#292667]" size={20} md:size={32} />
-                 </div>
-                 <div className="text-center sm:text-left">
-                    <h4 className="text-sm md:text-xl font-black uppercase tracking-tight leading-none">Upgrade Pending!</h4>
-                    <p className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] text-[#fbee21] mt-1 md:mt-2">Finish {currentStats.tasks.split('/')[1]} missions to level up!</p>
-                 </div>
-              </div>
-              <button className="w-full sm:w-auto px-6 md:px-10 py-2.5 md:py-3.5 bg-[#fbee21] text-[#292667] rounded-xl md:rounded-[1rem] font-black text-[10px] md:text-sm uppercase tracking-widest shadow-xl hover:scale-105 active:scale-95 transition-all relative z-10 border-b-4 border-black/10">
-                 Resume Mission
-              </button>
            </div>
         </div>
       </div>

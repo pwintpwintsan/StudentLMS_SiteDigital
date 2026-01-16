@@ -24,16 +24,6 @@ const UnlockCourseModal: React.FC<UnlockModalProps> = ({ course, onClose }) => (
          </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 mb-10">
-         <div className="p-6 bg-slate-50 rounded-[2.5rem] border-2 border-slate-100 flex items-center gap-6">
-            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-[#ec2027] shadow-sm"><AlertCircle size={24} /></div>
-            <div>
-               <p className="font-black text-[#292667] uppercase text-sm">Main Center Approval</p>
-               <p className="text-[10px] font-bold text-slate-400">Administrators will enable this on your account.</p>
-            </div>
-         </div>
-      </div>
-
       <div className="flex flex-col gap-3">
          <a 
            href="mailto:admin@ubookstore.com"
@@ -64,77 +54,59 @@ export const OtherCoursesView: React.FC<OtherCoursesViewProps> = ({ onEnterCours
   ];
 
   return (
-    <div className="h-full flex flex-col gap-6 overflow-hidden relative">
+    <div className="h-full flex flex-col gap-3 md:gap-5 overflow-hidden relative">
       {selectedUnlock && <UnlockCourseModal course={selectedUnlock} onClose={() => setSelectedUnlock(null)} />}
 
-      <div className="w-full bg-[#292667] rounded-[3rem] p-8 text-white shadow-2xl border-b-[12px] border-[#f43f5e] flex flex-col md:flex-row items-center justify-between gap-8 flex-shrink-0 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full -mr-24 -mt-24 blur-3xl"></div>
-        <div className="flex items-center gap-6 relative z-10">
-           <div className="p-5 bg-[#f43f5e] rounded-[2.5rem] text-white shadow-xl rotate-3">
-             <Layers size={42} strokeWidth={3.5} />
+      {/* Universal Compact Hero Header */}
+      <div className="w-full bg-[#292667] rounded-[1.8rem] md:rounded-[2.2rem] p-4 md:p-6 text-white shadow-lg border-b-[6px] md:border-b-[10px] border-[#f43f5e] flex flex-col md:flex-row items-center justify-between gap-3 md:gap-6 flex-shrink-0 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 md:w-80 md:h-80 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+        <div className="flex items-center gap-3 md:gap-6 relative z-10 w-full md:w-auto">
+           <div className="p-3 md:p-4 bg-[#f43f5e] rounded-xl md:rounded-[1.5rem] text-white shadow-xl rotate-3">
+             <Layers size={24} md:size={36} strokeWidth={3.5} />
            </div>
            <div>
-             <h2 className="text-4xl font-black leading-none tracking-tight uppercase">Discover <span className="text-[#fbee21]">Courses</span></h2>
-             <p className="text-[12px] font-black text-[#fbee21] uppercase tracking-[0.15em] mt-3">Expand your knowledge universe</p>
+             <h2 className="text-xl md:text-3xl font-black leading-none tracking-tight uppercase">Discover <span className="text-[#fbee21]">Courses</span></h2>
+             <p className="text-[9px] md:text-[11px] font-black text-[#fbee21] uppercase tracking-[0.2em] mt-1 md:mt-2">Expand Your Universe</p>
            </div>
         </div>
       </div>
 
       <div className="flex-1 overflow-y-auto scrollbar-hide pb-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses.map((course) => (
             <div 
               key={course.id} 
-              className={`bg-white rounded-[3.5rem] p-10 border-4 transition-all group shadow-xl flex flex-col relative overflow-hidden ${
+              className={`bg-white rounded-[2rem] md:rounded-[2.5rem] p-6 border-4 transition-all group shadow-lg flex flex-col relative overflow-hidden ${
                 course.isPurchased 
                   ? 'border-slate-50 hover:border-[#f43f5e] hover:shadow-2xl' 
                   : 'border-slate-100 grayscale-[0.5] opacity-90'
               }`}
             >
-              <div className="flex justify-between items-start mb-10 relative z-10">
+              <div className="flex justify-between items-start mb-6 relative z-10">
                  <div 
-                   className="w-20 h-20 rounded-[2rem] flex items-center justify-center shadow-lg transition-transform group-hover:rotate-12"
+                   className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg transition-transform group-hover:rotate-12"
                    style={{ backgroundColor: `${course.color}15`, color: course.color }}
                  >
-                    {course.isPurchased ? <Sparkles size={40} /> : <Lock size={40} className="text-[#ec2027]" />}
+                    {course.isPurchased ? <Sparkles size={28} /> : <Lock size={28} className="text-[#ec2027]" />}
                  </div>
-                 <span className={`px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm ${
-                   course.isPurchased ? 'bg-green-50 text-[#00a651] border border-green-100' : 'bg-slate-50 text-[#ec2027] border border-[#ec2027]/20'
-                 }`}>
-                    {course.isPurchased ? 'Unlocked' : 'Locked'}
-                 </span>
               </div>
               
-              <div className="flex-1 mb-10 relative z-10">
-                 <h3 className="text-2xl font-black text-[#292667] uppercase tracking-tighter mb-4 leading-tight">{course.name}</h3>
-                 <p className="text-slate-500 font-bold text-sm leading-relaxed">{course.desc}</p>
+              <div className="flex-1 mb-6 relative z-10">
+                 <h3 className="text-lg md:text-xl font-black text-[#292667] uppercase tracking-tighter mb-2 leading-tight">{course.name}</h3>
+                 <p className="text-slate-500 font-bold text-[10px] md:text-xs leading-relaxed">{course.desc}</p>
               </div>
               
-              <div className="flex items-center justify-between mb-10 border-y-2 border-slate-50 py-6 relative z-10">
-                 <div className="flex items-center gap-3">
-                    <ShieldCheck size={20} className={course.isPurchased ? "text-[#00a651]" : "text-slate-300"} />
-                    <span className="text-[11px] font-black uppercase text-slate-400 tracking-widest">{course.level}</span>
-                 </div>
-                 <div className={`flex items-center gap-1.5 ${course.isPurchased ? 'text-[#fbee21]' : 'text-slate-200'}`}>
-                    {[1, 2, 3, 4, 5].map(i => <Star key={i} size={14} fill="currentColor" strokeWidth={0} />)}
-                 </div>
-              </div>
-
               <button 
                 onClick={() => course.isPurchased ? onEnterCourse(course.name) : setSelectedUnlock(course)}
-                className={`w-full py-5 rounded-[2rem] font-black text-xs uppercase tracking-widest shadow-xl transition-all flex items-center justify-center gap-3 active:scale-95 border-b-6 border-black/20 group relative z-10 ${
+                className={`w-full py-3.5 rounded-xl font-black text-[10px] md:text-xs uppercase tracking-widest shadow-lg transition-all flex items-center justify-center gap-2 active:scale-95 border-b-4 border-black/20 group relative z-10 ${
                   course.isPurchased 
                     ? 'bg-[#292667] text-white hover:bg-slate-800' 
                     : 'bg-[#f43f5e] text-white hover:bg-[#ec2027]'
                 }`}
               >
                 {course.isPurchased ? 'Enter Course' : 'Request Access'} 
-                <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" strokeWidth={3} />
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" strokeWidth={3} />
               </button>
-
-              <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity">
-                 <Rocket size={200} />
-              </div>
             </div>
           ))}
         </div>
