@@ -11,7 +11,8 @@ import {
   CalendarCheck,
   X,
   LogOut,
-  User
+  User,
+  Heart
 } from 'lucide-react';
 import { View, Student } from '../types';
 
@@ -21,64 +22,63 @@ interface StudentSidebarProps {
   isOpen?: boolean;
   onClose?: () => void;
   student: Student;
+  onLogout: () => void;
 }
 
-export const StudentSidebar: React.FC<StudentSidebarProps> = ({ currentView, onViewChange, isOpen, onClose, student }) => {
+export const StudentSidebar: React.FC<StudentSidebarProps> = ({ currentView, onViewChange, isOpen, onClose, student, onLogout }) => {
   const menuItems = [
-    { id: View.MY_ADVENTURE, label: 'My Adventure', icon: Rocket, color: '#ec2027' },
-    { id: View.MY_STARS, label: 'My Stars', icon: Star, color: '#00a651' },
-    { id: View.ATTENDANCE, label: 'My Check-in', icon: CalendarCheck, color: '#3b82f6' },
-    { id: View.TROPHY_ROOM, label: 'Trophy Room', icon: Trophy, color: '#fbee21' },
-    { id: View.RESOURCES, label: 'Book Library', icon: BookOpen, color: '#3b82f6' },
-    { id: View.TESTS, label: 'Mission Tests', icon: ClipboardCheck, color: '#a855f7' },
-    { id: View.OTHER_COURSES, label: 'Other Courses', icon: Layers, color: '#f43f5e' },
+    { id: View.MY_ADVENTURE, label: 'Adventure', icon: Rocket, color: '#ec2027' },
+    { id: View.MY_STARS, label: 'My Stars', icon: Star, color: '#fbee21' },
+    { id: View.ATTENDANCE, label: 'Check-in', icon: CalendarCheck, color: '#00a651' },
+    { id: View.TROPHY_ROOM, label: 'Trophies', icon: Trophy, color: '#fbee21' },
+    { id: View.RESOURCES, label: 'Library', icon: BookOpen, color: '#ec2027' },
+    { id: View.TESTS, label: 'Missions', icon: ClipboardCheck, color: '#00a651' },
+    { id: View.OTHER_COURSES, label: 'Discovery', icon: Layers, color: '#ec2027' },
   ];
 
   const sidebarClasses = `
-    fixed inset-y-0 left-0 z-50 w-64 md:w-72 bg-[#292667] text-white flex flex-col transition-transform duration-300 transform
+    fixed inset-y-0 left-0 z-50 w-72 bg-[#292667] border-r-[12px] border-[#ec2027] flex flex-col transition-transform duration-300 transform
     lg:relative lg:translate-x-0 lg:z-0 lg:shadow-none
     ${isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'}
-    border-r-[12px] md:border-r-[16px] border-[#fbee21] shrink-0 overflow-hidden
+    shrink-0 overflow-hidden
   `;
 
   return (
     <div className={sidebarClasses}>
-      <div className="p-5 md:p-8 flex-1 overflow-hidden flex flex-col justify-start relative">
+      <div className="p-6 flex-1 overflow-hidden flex flex-col justify-start relative">
         
         {/* Mobile Close Button */}
         <button 
           onClick={onClose}
-          className="lg:hidden absolute top-4 right-4 p-2.5 text-white/50 hover:text-white bg-white/10 rounded-xl"
+          className="lg:hidden absolute top-4 right-4 p-2 text-white/50 hover:text-white bg-white/10 rounded-xl"
         >
-          <X size={24} strokeWidth={3} />
+          <X size={24} strokeWidth={4} />
         </button>
 
-        {/* Clickable Profile Card */}
+        {/* Student Profile Card - Very Playful */}
         <button 
           onClick={() => onViewChange(View.PROFILE)}
-          className={`w-full bg-white/10 p-6 rounded-[2.5rem] border-2 border-dashed relative group cursor-pointer overflow-hidden shrink-0 mb-6 md:mb-8 text-center transition-all hover:bg-white/15 outline-none focus:ring-4 focus:ring-[#fbee21]/20 ${
-            currentView === View.PROFILE ? 'border-[#fbee21] bg-white/20' : 'border-[#fbee21]/30'
+          className={`w-full bg-white p-5 rounded-[2.5rem] border-[6px] relative group cursor-pointer overflow-hidden shrink-0 mb-8 text-center transition-all hover:-translate-y-1 ${
+            currentView === View.PROFILE ? 'border-[#fbee21] bg-[#fffbeb]' : 'border-white'
           }`}
         >
           <div className="relative inline-block mb-3">
-             <div className="w-20 h-20 md:w-24 md:h-24 bg-[#fbee21] rounded-[2rem] md:rounded-[2.5rem] flex items-center justify-center rotate-3 shadow-xl mx-auto border-4 border-white">
+             <div className="w-20 h-20 bg-[#fbee21] rounded-[2rem] flex items-center justify-center rotate-6 shadow-xl mx-auto border-[4px] border-[#292667]">
                 <img 
                   src={`https://api.dicebear.com/7.x/adventurer/svg?seed=${student.avatarSeed || 'Buddy'}&backgroundColor=fbee21`} 
-                  className="w-16 h-16 md:w-20 md:h-20 drop-shadow-lg" 
+                  className="w-16 h-16 drop-shadow-md" 
                   alt="Student Avatar" 
                 />
              </div>
-             <div className="absolute -bottom-2 -right-1 bg-[#ec2027] text-white p-2.5 rounded-xl shadow-lg border-2 border-white animate-bounce">
-                <Sparkles size={16} strokeWidth={4} />
+             <div className="absolute -bottom-1 -right-1 bg-[#ec2027] text-white p-2 rounded-xl shadow-lg border-[3px] border-white -rotate-12">
+                <Heart size={14} fill="currentColor" strokeWidth={3} />
              </div>
           </div>
-          <h4 className="text-xl md:text-2xl font-black leading-none mt-2 text-white truncate">{student.firstName} {student.lastName}</h4>
-          <div className="mt-3 flex items-center justify-center gap-2">
-            <span className="bg-[#fbee21] text-[#292667] px-4 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest">Super Star</span>
-          </div>
+          <h4 className="text-base font-black leading-none text-[#292667] uppercase tracking-tight truncate">{student.firstName}</h4>
+          <p className="text-[10px] font-black text-slate-400 uppercase mt-2 tracking-widest">{student.level}</p>
         </button>
 
-        <nav className="space-y-2.5 md:space-y-4 flex-1 overflow-y-auto scrollbar-hide py-1">
+        <nav className="space-y-3 flex-1 overflow-y-auto scrollbar-hide py-2">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = currentView === item.id;
@@ -86,53 +86,37 @@ export const StudentSidebar: React.FC<StudentSidebarProps> = ({ currentView, onV
               <button
                 key={item.id}
                 onClick={() => onViewChange(item.id)}
-                className={`w-full group flex items-center gap-4 px-4 py-4 md:py-5 rounded-[1.8rem] transition-all duration-300 ${
+                className={`w-full group flex items-center gap-4 px-4 py-4 rounded-[1.8rem] transition-all duration-300 border-[4px] ${
                   isActive 
-                    ? 'bg-[#fbee21] text-[#292667] shadow-xl scale-102 border-b-6 md:border-b-8 border-[#292667]/20' 
-                    : 'hover:bg-white/10 text-white/70 hover:text-white'
+                    ? 'bg-white text-[#292667] border-[#fbee21] shadow-xl scale-[1.05]' 
+                    : 'text-white/70 border-transparent hover:bg-white/10 hover:text-white'
                 }`}
               >
                 <div 
-                  className={`p-3 rounded-2xl transition-all duration-200 group-hover:rotate-12 flex-shrink-0 shadow-md ${isActive ? 'bg-[#292667]' : ''}`}
-                  style={{ backgroundColor: isActive ? '#292667' : item.color }}
+                  className={`p-2.5 rounded-2xl transition-all duration-300 group-hover:rotate-12 flex-shrink-0 shadow-md ${isActive ? '' : 'bg-white/5'}`}
+                  style={{ color: item.color }}
                 >
-                  <Icon 
-                    size={22} md:size={24}
-                    strokeWidth={3.5} 
-                    className={isActive ? 'text-[#fbee21]' : 'text-white'} 
-                  />
+                  <Icon size={24} strokeWidth={isActive ? 4 : 3} className={isActive && item.color === '#fbee21' ? 'fill-[#fbee21] stroke-[#292667]' : ''} />
                 </div>
-                <span className={`text-[14px] md:text-[16px] font-black uppercase tracking-tight text-left`}>
+                <span className="text-[14px] font-black uppercase tracking-widest">
                   {item.label}
                 </span>
+                {isActive && <Sparkles size={16} className="ml-auto text-[#fbee21] animate-pulse" />}
               </button>
             );
           })}
         </nav>
       </div>
 
-      {/* Logout & Profile Footer */}
-      <div className="p-5 md:p-8 shrink-0 bg-[#292667] border-t-2 border-white/10">
-        <div className="flex items-center justify-between gap-4">
-          <button 
-            onClick={() => onViewChange(View.PROFILE)}
-            className="flex items-center gap-3 bg-white/5 p-3 rounded-2xl flex-1 border border-white/10 hover:bg-white/10 transition-all text-left group"
-          >
-            <div className="p-2 bg-[#fbee21] rounded-lg group-hover:rotate-12 transition-transform">
-              <User size={18} className="text-[#292667]" strokeWidth={3} />
-            </div>
-            <div className="overflow-hidden">
-              <p className="text-[10px] font-black text-[#fbee21] uppercase tracking-widest leading-none mb-1">ID HERO</p>
-              <p className="text-sm font-mono font-black text-white truncate">{student.username}</p>
-            </div>
-          </button>
-          <button 
-            className="p-4 bg-[#ec2027] text-white rounded-2xl shadow-lg hover:bg-[#991b1b] transition-all active:scale-90 border-b-4 border-black/20 group"
-            title="Log Out"
-          >
-            <LogOut size={24} strokeWidth={3} className="group-hover:-translate-x-1 transition-transform" />
-          </button>
-        </div>
+      {/* Logout Footer with Bold Styling */}
+      <div className="p-6 shrink-0 bg-black/10">
+        <button 
+          onClick={onLogout}
+          className="w-full flex items-center justify-center gap-3 p-4 bg-white text-[#292667] hover:bg-[#ec2027] hover:text-white rounded-[1.8rem] transition-all active:scale-95 shadow-lg border-[4px] border-transparent hover:border-white font-black text-sm uppercase tracking-widest group"
+        >
+          <LogOut size={20} strokeWidth={4} className="group-hover:-translate-x-1 transition-transform" />
+          Exit Quest
+        </button>
       </div>
     </div>
   );

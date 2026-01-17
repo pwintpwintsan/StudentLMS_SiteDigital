@@ -1,11 +1,54 @@
 
 import { Teacher, Student, ClassInfo, Course } from './types';
 
-export const MOCK_COURSES: Course[] = [
-  { id: 'rs1', name: 'Digital Kids Starter V2', isPurchased: true, thumbnail: 'https://picsum.photos/seed/dkv2/400/300' },
-  { id: 'rs2', name: 'Level 1 Core Robotics', isPurchased: true, thumbnail: 'https://picsum.photos/seed/l1c/400/300' },
-  { id: 'rs3', name: 'Advanced AI for Kids', isPurchased: false, thumbnail: 'https://picsum.photos/seed/aai/400/300' },
-  { id: 'rs4', name: 'Global Coding V3', isPurchased: false, thumbnail: 'https://picsum.photos/seed/gcv3/400/300' },
+export interface ExtendedCourse extends Course {
+  description: string;
+  duration: string;
+  level: string;
+  color: string;
+}
+
+export const MOCK_COURSES: ExtendedCourse[] = [
+  { 
+    id: 'rs1', 
+    name: 'Digital Kids Starter V2', 
+    isPurchased: true, 
+    thumbnail: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=400',
+    description: 'The perfect start for young tech explorers! Learn binary secrets and computer logic through play.',
+    duration: '12 Weeks',
+    level: 'Starter',
+    color: '#ec2027'
+  },
+  { 
+    id: 'rs2', 
+    name: 'Level 1 Core Robotics', 
+    isPurchased: true, 
+    thumbnail: 'https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&q=80&w=400',
+    description: 'Bring machines to life! Build robots and learn how to control them with real code.',
+    duration: '16 Weeks',
+    level: 'Core',
+    color: '#00a651'
+  },
+  { 
+    id: 'rs3', 
+    name: 'Advanced AI for Kids', 
+    isPurchased: false, 
+    thumbnail: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=400',
+    description: 'Unlock the future! Discover how Artificial Intelligence helps us create art and solve puzzles.',
+    duration: '20 Weeks',
+    level: 'Advanced',
+    color: '#3b82f6'
+  },
+  { 
+    id: 'rs4', 
+    name: 'Global Coding V3', 
+    isPurchased: false, 
+    thumbnail: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=400',
+    description: 'Master the language of the web! Create amazing sites and share your projects with the world.',
+    duration: '14 Weeks',
+    level: 'Intermediate',
+    color: '#a855f7'
+  },
 ];
 
 export const MOCK_TEACHER: Teacher = {

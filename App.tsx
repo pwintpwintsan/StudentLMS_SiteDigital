@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { StudentSidebar } from './components/StudentSidebar';
 import { StudentLearningView } from './components/views/StudentLearningView';
@@ -10,16 +10,18 @@ import { TeachingResourcesView } from './components/views/TeachingResourcesView'
 import { OtherCoursesView } from './components/views/OtherCoursesView';
 import { AttendanceView } from './components/views/AttendanceView';
 import { ProfileSettingsView } from './components/views/ProfileSettingsView';
+import { LoginView } from './components/views/LoginView';
 import { View, Student } from './types';
 
 const App: React.FC = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentView, setCurrentView] = useState<View>(View.MY_ADVENTURE);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState<string>('Digital Kids Starter V2');
   const [student, setStudent] = useState<Student>({
     id: 's1',
-    username: '1009921',
-    firstName: 'Lucky',
+    username: '',
+    firstName: '',
     lastName: 'Learner',
     points: 2450,
     stars: 12,
@@ -32,6 +34,20 @@ const App: React.FC = () => {
     activationDate: '2024-01-01',
     registeredClasses: []
   });
+
+  const handleLogin = (firstName: string, id: string) => {
+    setStudent(prev => ({
+      ...prev,
+      firstName: firstName,
+      username: id
+    }));
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setCurrentView(View.MY_ADVENTURE);
+  };
 
   const handleViewChange = (view: View) => {
     setCurrentView(view);
@@ -75,12 +91,18 @@ const App: React.FC = () => {
     }
   };
 
+  if (!isAuthenticated) {
+    return <LoginView onLogin={handleLogin} />;
+  }
+
   return (
-    <div className="flex flex-col h-screen w-screen overflow-hidden bg-[#f8fafc] selection:bg-[#fbee21] selection:text-[#292667]">
+    <div className="flex flex-col h-screen w-screen overflow-hidden selection:bg-[#fbee21] selection:text-[#292667]">
       <Header 
         schoolName="U Book Store" 
         teacherCode={`Lvl: ${student.level}`} 
         onMenuToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        onLogout={handleLogout}
+        isLoggedIn={true}
       />
       
       <div className="flex flex-1 overflow-hidden relative">
@@ -90,19 +112,17 @@ const App: React.FC = () => {
           isOpen={isMobileMenuOpen}
           onClose={() => setIsMobileMenuOpen(false)}
           student={student}
+          onLogout={handleLogout}
         />
         
         {isMobileMenuOpen && (
           <div 
-            className="fixed inset-0 bg-[#292667]/60 backdrop-blur-sm z-40 lg:hidden animate-in fade-in duration-300"
+            className="fixed inset-0 bg-sky-900/40 backdrop-blur-sm z-40 lg:hidden animate-in fade-in duration-300"
             onClick={() => setIsMobileMenuOpen(false)}
           />
         )}
         
-        <main 
-          className="flex-1 relative flex flex-col overflow-hidden"
-          style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/cubes.png')" }}
-        >
+        <main className="flex-1 relative flex flex-col overflow-hidden bg-playful-pattern">
           <div className="flex-1 p-3 md:p-5 lg:p-6 min-h-0 overflow-hidden">
             <div className="max-w-7xl mx-auto h-full flex flex-col animate-in fade-in zoom-in-95 duration-400">
               {renderView()}
